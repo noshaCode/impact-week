@@ -6,7 +6,7 @@ const signupForm = (req, res) => {
 
 const signupFormSubmit = async (req, res) => {
   const body =req.body 
-  
+  console.log(body)
     try {
         const newUser = await User.create({
             name:body.name,
