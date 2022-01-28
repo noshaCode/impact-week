@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questions Impact</title>
+
+</head>
+<body>
+
+    <a href="/create-question">Create a question</a>
+
+    <div class="container">
+    
+        <% questions.forEach(function(item) { %>
+            <h3><a href="#"> <%= item.question %> </a></h3>
+            <p><%= item.description %></p>
+            <p><%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'numeric', day: '2-digit'}).format(new Date(item.updatedAt)) %></p>
+         
+        <% }); %>
+        
+    
+    </div>
+
+</body>
+</html>
