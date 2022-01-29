@@ -6,7 +6,7 @@ const userSchema = new Schema({
     name:{
         type:String,
         required: true,
-        minlength: 15
+        minlength: 2
     },
     email:{
         type:String,
@@ -23,10 +23,9 @@ const userSchema = new Schema({
 
 },{ timestamps: true });
 
-userSchema.pre("save", async(next) => {
+userSchema.pre("save", async function() {
     const salt = await bcrypt.genSalt();
     this.password = await bcrypt.hash(this.password, salt);
-    next();
 })
 
 
