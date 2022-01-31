@@ -12,12 +12,12 @@
     <a href="/signup">Sign Up</a>
 
 
-    <!-- <a href="/create-question">Add a question</a> -->
+    <a href="/new/question">Add a question</a>
 
     <div class="container">
     
         <% questions.forEach(function(item) { %>
-            <h3><a href="#"> <%= item.question %> </a></h3>
+            <h3><a href="/question/<%=item.id%>"> <%= item.question %> </a></h3>
             <p><%= item.description %></p>
             <p><%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'numeric', day: '2-digit'}).format(new Date(item.updatedAt)) %></p>
          

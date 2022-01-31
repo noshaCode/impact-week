@@ -2,9 +2,9 @@ const express = require("express");
 
 const authRouter = express.Router();
 
-const {signupForm,signupFormSubmit } = require('./controllers/authController')
+const {showSignupForm,signupFormSubmit } = require('./controllers/authController')
 
-authRouter.get('/signup', signupForm)
+authRouter.get('/signup', showSignupForm)
 authRouter.post('/signup', signupFormSubmit)
 
 // Log In / Log Out router
