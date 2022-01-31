@@ -12,6 +12,7 @@ const qSchema = new Schema({
         type:String,
         required: true,
         minlength: 5
+       
     },
   
 

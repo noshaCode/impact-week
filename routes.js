@@ -1,5 +1,5 @@
 const express = require("express");
-const {allQuestions,readQuestion,creatQuestion,showFormQuestion,updateOuestion,questionWithEdit}= require("./controllers/qcontrollers.js")
+const {allQuestions,readQuestion,creatQuestion,showFormQuestion,updateOuestion,questionWithEdit,deleteQuestion}= require("./controllers/qcontrollers.js")
 
 const router = express.Router();
 
@@ -13,7 +13,7 @@ router.post("/new/question",creatQuestion)
 router.get("/edit/question/:id",updateOuestion)
 router.post("/edit/question/:id",questionWithEdit)
 
-// router.get('/delete/article/:id', deleteQuestion)
+router.get('/delete/question/:id', deleteQuestion)
 
 
 
