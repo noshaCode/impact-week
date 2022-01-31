@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose =require("mongoose");
+const cookieParser = require('cookie-parser');
 require('dotenv').config()
 
 const router = require("./routes")
@@ -18,9 +19,12 @@ mongoose.connect(databaseUrMongo)
 })
 .catch((err)=>console.log(err));
 
-app.use(express.static("public"))
-app.set("view engine", "ejs")
-app.use(express.json())
+
+
+app.use(express.static("public"));
+app.set("view engine", "ejs");
+app.use(cookieParser());
+app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 app.use(authRouter);
