@@ -5,13 +5,13 @@ const qSchema = new Schema({
     question:{
         type:String,
         required: true,
-        minlength: 15
+        minlength: 5
     },
   
     description:{
         type:String,
         required: true,
-        minlength: 40
+        minlength: 5
     },
   
 
