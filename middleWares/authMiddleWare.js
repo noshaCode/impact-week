@@ -6,7 +6,7 @@ const checkUser = async (req, res, next) => {
     const token = req.cookies.jwtToken;
     if(token){
         try {
-            const authUser = await jwt.verify(token, 'this signature is optional');
+            const authUser = await jwt.verify(token, "my password");
             User.findById(authUser.id)
                 .then( user => {
                     const { userName, email, createdAt, updatedAt } = user;
