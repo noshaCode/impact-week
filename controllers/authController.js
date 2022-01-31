@@ -40,4 +40,36 @@ const signupFormSubmit = async (req, res) => {
 }
 
 
-module.exports = {showSignupForm, signupFormSubmit}
+
+//start LogIn / LogOut Functions
+
+const logInFunc = (req, res) =>{
+    if(req.method === 'GET'){
+        
+        res.render('auth/login', {pageTitle: 'Log In'});
+    };
+
+    if(req.method === 'POST'){
+        const { email, password } = req.body;
+        User.logIn(email, password)
+            .then(user => {
+                const token = createJwtToken(user.id);
+                res.cookie('jwtToken', token, {httpOnly: true, maxAge: maxAge * 1000});
+                res.redirect('/');
+            })
+            .catch(err => console.log(err))
+    };
+}
+
+const logOutFunc = (req, res) => {
+    // res.cookie('jwtToken', '', {maxAge: 1});
+    res.clearCookie('jwtToken');
+    res.redirect('/');
+}
+
+module.exports = {
+    showSignupForm,
+     logInFunc,
+    logOutFunc,
+ signupFormSubmit
+}

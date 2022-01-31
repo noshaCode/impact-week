@@ -1,10 +1,13 @@
 const express = require("express");
+
 const {allQuestions,readQuestion,creatQuestion,showFormQuestion,updateOuestion,questionWithEdit,deleteQuestion}= require("./controllers/qcontrollers.js")
+
+
+const {checkUser} = require('./middleWares/authMiddleWare');
 
 const router = express.Router();
 
-
-router.get("/",allQuestions)
+router.get("/",checkUser,allQuestions)
 router.get("/question/:id",readQuestion)
 
 router.get("/new/question",showFormQuestion)
