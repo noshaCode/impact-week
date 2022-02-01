@@ -40,7 +40,7 @@ const showFormQuestion = (req, res) => {
 }
 
 
-const creatQuestion = async (req, res) => {
+const createQuestion = async (req, res) => {
     const body = req.body
     const user = res.locals.user //read
 
@@ -60,7 +60,7 @@ const creatQuestion = async (req, res) => {
 
 }
 
-const updateOuestion = async (req, res) => {
+const updateQuestion = async (req, res) => {
     const id = req.params.id
     try {
         const result = await Question.findById(id)
@@ -100,6 +100,23 @@ const deleteQuestion = (req,res)=> {
     })
 }
 
+// const deleteQuestionValidate = (req,res)=> {
+//     const id = req.params.id
+//     const user = res.locals.user 
+//     Question.findById(id)
+//     .then((question)=>{
+//         if (question.user == user.id) {
+//             question.remove();
+//             res.redirect("/");
+//         } else {
+//             res.redirect("/");
+//         }
+//     })
+//     .catch((err)=>{
+//         res.redirect(`/question/${id}`);
+//     })
+// }
 
 
-module.exports = { allQuestions, readQuestion, creatQuestion, showFormQuestion, updateOuestion, questionWithEdit,deleteQuestion }
+
+module.exports = { allQuestions, readQuestion, createQuestion, showFormQuestion, updateQuestion, questionWithEdit,deleteQuestion }

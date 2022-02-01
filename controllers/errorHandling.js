@@ -30,7 +30,5 @@ const handleQuestionsError = (allErrors)=>{
   }
   return errorsList
 }
-  
-
 
 module.exports = {handleSignupError,handleQuestionsError}

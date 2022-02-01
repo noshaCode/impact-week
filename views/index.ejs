@@ -9,10 +9,19 @@
 </head>
 <body>
 
-    <a href="/signup">Sign Up</a>
-    <a href="/login">Login</a>
+    <div>
+    <% if (user) { %>
+        Welcome, <%= user.name %>
+        <a href="/logout">Log out</a>
+      <% } else { %>
+        <a href="/login">Log in</a>
+        <a href="/signup">Sign up</a>
+      <% } %>
+    </div>
 
-    <a href="/new/question">Add a question</a>
+    <div>
+        <a href="/new/question">Add a question</a>
+    </div>
 
     <div class="container">
     

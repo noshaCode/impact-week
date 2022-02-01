@@ -2,6 +2,20 @@
 const jwt = require('jsonwebtoken');
 const User = require("../models/user");
 
+const access = async (req, res, next) =>{
+    const token =req.cookies.jwtToken
+        if (token){
+            try {
+                const authUser = await jwt.verify(token, "my password");
+                next();
+            }catch(err){
+                res.redirect("/login")
+            }
+        } else{
+            res.redirect("/login")
+        }
+}
+
 const checkUser = async (req, res, next) => {
     const token = req.cookies.jwtToken;
     
@@ -11,8 +25,8 @@ const checkUser = async (req, res, next) => {
         
             User.findById(authUser.id)
                 .then( user => {
-                    const { name, email, createdAt, updatedAt } = user;
-                    res.locals.user = { id: user.id, name, email, createdAt, updatedAt };
+                    const { id, name, email, createdAt, updatedAt } = user;
+                    res.locals.user = {id, name, email, createdAt, updatedAt };
                     next();
                 })
                 .catch(err => {
@@ -31,5 +45,5 @@ const checkUser = async (req, res, next) => {
 }
 
 module.exports = {
-    checkUser
+    checkUser,access
 }
