@@ -30,7 +30,7 @@ const signupFormSubmit = async (req, res) => {
         
         const token = createJwtToken(user.id)
 
-        res.cookie("jwt",token,{httpOnly: true, maxAge: maxAge * 1000})
+        res.cookie("jwtToken",token,{httpOnly: true, maxAge: maxAge * 1000})
         res.redirect('/')
     } catch(err) {
        console.error("oops an error",err)

@@ -8,10 +8,10 @@ const {checkUser} = require('./middleWares/authMiddleWare');
 const router = express.Router();
 
 router.get("/",checkUser,allQuestions)
-router.get("/question/:id",readQuestion)
+router.get("/question/:id",checkUser, readQuestion)
 
 router.get("/new/question",showFormQuestion)
-router.post("/new/question",creatQuestion)
+router.post("/new/question",checkUser, creatQuestion)
 
 router.get("/edit/question/:id",updateOuestion)
 router.post("/edit/question/:id",questionWithEdit)
