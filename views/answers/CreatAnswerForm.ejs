@@ -1,0 +1,20 @@
+
+<%- include('../components/header') %>
+
+     <a href="/">Back</a>
+    </div>
+    <% if (errorMessage) { %> 
+        <div class="error-message">
+            <%= errorMessage %>
+       </div>
+    <% } %>
+   
+    <form method="POST" action="/new/answer">
+        <div >
+            <label>Answer</label>
+            <textarea  rows="20" cols="30" name="answer" placeholder="Description"></textarea>
+        </div>
+        <button type="submit">Add Answer</button>
+    </form>
+
+    <%- include('../components/footer') %>
