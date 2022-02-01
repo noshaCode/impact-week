@@ -1,5 +1,7 @@
 const res = require("express/lib/response");
 const Question = require("../models/question")
+const {handleQuestionsError}=require("./errorHandling")
+
 
 const allQuestions = (req, res) => {
     Question.find()
@@ -14,7 +16,7 @@ const allQuestions = (req, res) => {
 
 const readQuestion = (req, res) => {
     const id = req.params.id;
-    const user = res.locals.user 
+    const user = res.locals.user //read
 
     const currentUserId = user ? user.id : "";
 
@@ -34,13 +36,13 @@ const readQuestion = (req, res) => {
 }
 
 const showFormQuestion = (req, res) => {
-    res.render('questions/createQuestionForm', { errorMessage: '' })
+    res.render('questions/createQuestionForm', { errorsList: '' })
 }
 
 
 const creatQuestion = async (req, res) => {
     const body = req.body
-    const user = res.locals.user 
+    const user = res.locals.user //read
 
     try {
         await Question.create({
@@ -51,7 +53,8 @@ const creatQuestion = async (req, res) => {
         res.redirect("/")
     } catch (error) {
         console.error(error)
-        res.render("questions/createQuestionForm", { errorMessage: error })
+        const errorsList = handleQuestionsError(error)
+        res.render("questions/createQuestionForm", { errorsList })
     }
 
 
