@@ -11,8 +11,11 @@
     <h1><%= result.question %></h1>
     <p><%= result.description %></p>
     <p>By: <%=result.user.name %> </p>
-    <a href="/edit/question/<%= result.id %>">Edit question</a> 
-    <a href="/delete/question/<%= result.id %>">Delete question</a>
+
+    <% if (result.user.id === currentUserId) { %>
+        <a href="/edit/question/<%= result.id %>">Edit question</a> 
+        <a href="/delete/question/<%= result.id %>">Delete question</a>
+    <% } %>   
    
 </body>
 </html>

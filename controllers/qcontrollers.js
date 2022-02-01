@@ -14,11 +14,14 @@ const allQuestions = (req, res) => {
 
 const readQuestion = (req, res) => {
     const id = req.params.id;
+    const user = res.locals.user 
+
+    const currentUserId = user ? user.id : "";
 
     Question.findById(id).populate('user')
         .then((result) => {
             if (result) {
-                res.render("questions/readQuestion", { result });
+                res.render("questions/readQuestion", { result, currentUserId });
             } else {
                 res.redirect("/")
             }
