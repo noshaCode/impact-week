@@ -23,7 +23,7 @@ router.get('/delete/question/:id', deleteQuestion)
 const Answer = require("./controllers/answerController")
 
 
-router.get("/", checkUser,Answer.AllAnswer)
+// router.get("/", checkUser,Answer.AllAnswer)
 
 router.get("/answer/:id",Answer.ReadAnswer)
 

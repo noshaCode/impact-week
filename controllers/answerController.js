@@ -36,7 +36,7 @@ const ReadAnswer = (req, res) => {
 }
 
 const ShowAnswerForm = (req, res) => {
-    res.render('answers/CreatAnswerForm', { errorMessage: '' })
+    res.render('answers/CreatAnswerForm', { errorMessage: '', pageTitle: "add answer" })
 }
 
 
