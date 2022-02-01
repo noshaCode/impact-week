@@ -5,15 +5,14 @@ const Schema = mongoose.Schema;
 const qSchema = new Schema({
     question:{
         type:String,
-        required: true,
-        minlength: 5
+        required: [true,"Please enter a question"],
+        minlength: [5,"Minimum question length is 5 characters"]
     },
   
     description:{
         type:String,
-        required: true,
-        minlength: 5
-       
+        required: [true,"Please enter a description"],
+        minlength: [5,"Minimum description is 5 characters"]
     },
     user:{
         type: Schema.Types.ObjectId,

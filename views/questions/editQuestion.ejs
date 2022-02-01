@@ -11,11 +11,11 @@
     <form method="POST" action="/edit/question/<%=result.id%> ">
       
         <div>
-            <input type="text" name="question" value="<%=result.question%>"/>
+            <input type="text" name="question" value="<%=result.question%>" required/>
         </div>
      
         <div>
-            <textarea rows="20" cols="30" name="description" ><%=result.description%></textarea>
+            <textarea rows="20" cols="30" name="description" required><%=result.description%></textarea>
         </div>
 
         <div>

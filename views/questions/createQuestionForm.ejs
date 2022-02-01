@@ -12,20 +12,26 @@
      <a href="/">Back</a>
    </div>
 
-    <% if (errorMessage) { %> 
-        <div class="error-message">
-            <%= errorMessage %>
-       </div>
-    <% } %>
+    
 
     <form method="POST" action="/new/question">
      
         <div>
-            <input type="text" name="question" placeholder="Question"/>
+            <input type="text" name="question" placeholder="Question" required/>
+            <% if (errorsList && errorsList.question){%>
+                <div class="error">
+                    <p><%=errorsList.question%></p> 
+                </div>
+            <%}%>
         </div>
     
         <div>
-            <textarea  rows="20" cols="30" name="description" placeholder="Description"></textarea>
+            <textarea  rows="20" cols="30" name="description" placeholder="Description" required></textarea>
+            <% if (errorsList && errorsList.description){%>
+                <div class="error">
+                    <p><%=errorsList.description%></p> 
+                </div>
+            <%}%>
         </div>
         <div>
             <button type="submit">Add questions</button>
