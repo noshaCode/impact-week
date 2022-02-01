@@ -4,7 +4,6 @@ const Question = require("../models/question")
 const allQuestions = (req, res) => {
     Question.find()
         .then((questions) => {
-
             res.render("index", { questions: questions });
         })
         .catch((err) => {
@@ -16,7 +15,7 @@ const allQuestions = (req, res) => {
 const readQuestion = (req, res) => {
     const id = req.params.id;
 
-    Question.findById(id)
+    Question.findById(id).populate('user')
         .then((result) => {
             if (result) {
                 res.render("questions/readQuestion", { result });
@@ -38,11 +37,13 @@ const showFormQuestion = (req, res) => {
 
 const creatQuestion = async (req, res) => {
     const body = req.body
+    const user = res.locals.user 
 
     try {
         await Question.create({
             question:body.question,
-            description: body.description
+            description: body.description,
+            user: user.id 
         })
         res.redirect("/")
     } catch (error) {
@@ -92,8 +93,6 @@ const deleteQuestion = (req,res)=> {
         res.redirect(`/question/${id}`);
     })
 }
-
-
 
 
 

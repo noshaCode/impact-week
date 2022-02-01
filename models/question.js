@@ -1,4 +1,5 @@
 const mongoose =require("mongoose");
+const User = require("../models/user")
 const Schema = mongoose.Schema;
 
 const qSchema = new Schema({
@@ -14,6 +15,10 @@ const qSchema = new Schema({
         minlength: 5
        
     },
+    user:{
+        type: Schema.Types.ObjectId,
+        ref : User
+    }
   
 
 },{ timestamps: true });

@@ -4,13 +4,15 @@ const User = require("../models/user");
 
 const checkUser = async (req, res, next) => {
     const token = req.cookies.jwtToken;
+    
     if(token){
         try {
             const authUser = await jwt.verify(token, "my password");
+        
             User.findById(authUser.id)
                 .then( user => {
-                    const { userName, email, createdAt, updatedAt } = user;
-                    res.locals.user = { userName, email, createdAt, updatedAt };
+                    const { name, email, createdAt, updatedAt } = user;
+                    res.locals.user = { id: user.id, name, email, createdAt, updatedAt };
                     next();
                 })
                 .catch(err => {
