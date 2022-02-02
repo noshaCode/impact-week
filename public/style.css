@@ -19,3 +19,10 @@ body{
     background-color: rgb(245, 240, 240);
     border-color: #ff7979;
 }
+
+.container {
+    z-index: 2000;
+    position: relative;
+    min-height: calc(100vh - 110px);
+
+}

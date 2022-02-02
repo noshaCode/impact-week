@@ -1,26 +1,23 @@
 <%- include('../components/header') %>
-<%- include('../components/top') %>
 
-    <form method="POST" action="/edit/question/<%=result.id%> ">
-      
-        <div>
-            <input type="text" name="question" value="<%=result.question%>" class="form-control" required/>
-        </div>
-     <br>
-        <div>
-            <textarea rows="20" cols="30" name="description"  class="form-control"   required><%=result.description%></textarea>
-        </div>
-<br>
-        <div>
-            <button type="submit" class="btn btn-primary">save question </button>
-        </div>
-    </form>
-    <br>
-    <div>
-    <a href="/edit/question/<%= result.id %>" class="btn btn-primary">Edit Article</a> 
+        <div class="container">
 
-    <a href="/delete/question/<%= result.id %>" class="btn btn-primary">Delete Article</a> 
-   </div>
+            <form method="POST" action="/edit/question/<%=result.id%> ">
 
-    <%- include('../components/bottom') %>
-    <%- include('../components/footer') %>
+                <div>
+                    <input type="text" name="question" value="<%=result.question%>" class="form-control" required />
+                </div>
+                <br>
+                <div>
+                    <textarea rows="20" cols="30" name="description" class="form-control"
+                        required><%=result.description%></textarea>
+                </div>
+                <br>
+                <div>
+                    <button type="submit" class="btn btn-primary">save question </button>
+                </div>
+            </form>
+            <br>
+        </div>
+
+            <%- include('../components/footer') %>
