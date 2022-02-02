@@ -1,13 +1,18 @@
 <%- include('../components/header') %>
-   <a href="/">Back</a>
-    <h1><%= result.question %></h1>
-    <p><%= result.description %></p>
-    <p>By: <%=result.user.name %> </p>
+<%- include('../components/top') %>
 
-    <% if (result.user.id === currentUserId) { %>
-        <a href="/edit/question/<%= result.id %>"class="btn btn-primary">Edit question</a> 
-        <a href="/delete/question/<%= result.id %>"class="btn btn-primary">Delete question</a>
-
-    <% } %>   
+<div class="container">
    
+        <h1><%= result.question %></h1>
+        <p><%= result.description %></p>
+        <p>By: <%=result.user.name %> </p>
+
+        <% if (result.user.id === currentUserId) { %>
+            <a href="/edit/question/<%= result.id %>"class="btn btn-primary">Edit question</a> 
+            <a href="/delete/question/<%= result.id %>"class="btn btn-primary">Delete question</a>
+
+        <% } %>   
+</div>
+   
+    <%- include('../components/bottom') %>
     <%- include('../components/footer') %>
