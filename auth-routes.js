@@ -16,3 +16,6 @@ authRouter.all('/login', LogIn.logInFunc);
 authRouter.get('/logout',LogIn.logOutFunc);
 
 module.exports = authRouter;
+
+//router.get('/login', controller.userLoggedIn, controller.getLogIn);
+//router.post('/login', controller.postLogIn);

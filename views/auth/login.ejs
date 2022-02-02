@@ -26,6 +26,10 @@
         </div>
         
         <button type="submit" >Log in</button>
+        
+          <% if(err) { %>
+                <p style="color: red;"><%= err %></p>
+            <% } %>
       
     </form>
 

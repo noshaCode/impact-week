@@ -15,7 +15,28 @@
     <% if (result.user.id === currentUserId) { %>
         <a href="/edit/question/<%= result.id %>">Edit question</a> 
         <a href="/delete/question/<%= result.id %>">Delete question</a>
-    <% } %>   
+    <% } %>  
+    <div>
+<h2>Answers:</h2>
+        <% answer.forEach(function(item) { %>
+            
+            <h3><%= item.answer%></h3>
+    
+            <p>Created By: <%=item.user.name %> </p>
+           
+        
+            <% if (item.user.id === currentUserId) { %>
+            <a href="/edit/answer/<%= item.id %>">Edit Answer</a> 
+            <a href="/delete/answer/<%= item.id %>">Delete answer</a>
+            <% } %>
+
+            <p><%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'numeric', day: '2-digit'}).format(new Date(item.updatedAt)) %></p>
+    </div> 
+    <% }); %>
+    <div>
+          
    
+    </div>
 </body>
 </html>
+

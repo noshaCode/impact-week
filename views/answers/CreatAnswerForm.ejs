@@ -1,20 +1,37 @@
 
-<%- include('../components/header') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
 
      <a href="/">Back</a>
-    </div>
-    <% if (errorMessage) { %> 
-        <div class="error-message">
-            <%= errorMessage %>
-       </div>
-    <% } %>
    
-    <form method="POST" action="/new/answer">
+   
+    <form method="POST" action="/new/answer/<%=question.id %>">
         <div >
             <label>Answer</label>
-            <textarea  rows="20" cols="30" name="answer" placeholder="Description"></textarea>
+
+            <textarea  rows="20" cols="30" name="answer" placeholder="Answer" required></textarea>
+            <% if (errorsList2 && errorsList2.answer) { %> 
+                <div class="error">
+                   <p> <%= errorsList2.answer %></p>
+               </div>
+            <% } %>
+
         </div>
+    <div>
         <button type="submit">Add Answer</button>
+    </div>
+    <div>
+    </div>
     </form>
 
     <%- include('../components/footer') %>
