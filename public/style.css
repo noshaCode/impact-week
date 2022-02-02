@@ -6,3 +6,16 @@ body{
     max-width: 700px;
     margin: 0 auto;
 }
+
+.btn {
+    background-color: #ff7979;
+    border-color: #ff7979;
+}
+
+.btn:hover {
+    /* background-color: #f9aaaa;
+    border-color: #ff7979; */
+    color: #ff7979;
+    background-color: rgb(245, 240, 240);
+    border-color: #ff7979;
+}
