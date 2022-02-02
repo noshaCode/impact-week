@@ -8,7 +8,7 @@ const createJwtToken =(id)=>jwt.sign({id}, "my password",{expiresIn: maxAge})
 
 // GET Request to show signup form
 const showSignupForm = (req, res) => {
-    res.render('auth/signup',{err: ""})
+    res.render('auth/signup',{err: "", pageTitle:"Signup"})
 }
 
 //POST Request for signup Form Submit
@@ -35,7 +35,7 @@ const signupFormSubmit = async (req, res) => {
     } catch(err) {
        console.error("oops an error",err)
        const errorsList = handleSignupError(err)
-       res.render('auth/signup',{err: errorsList})
+       res.render('auth/signup',{err: errorsList, pageTitle:"Signup"})
     }
 }
 

@@ -1,44 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questions Impact</title>
-
-</head>
-<body>
+<%- include('./components/header') %>
 
     <div>
     <% if (user) { %>
         Welcome, <%= user.name %>
         <a href="/logout">Log out</a>
       <% } else { %>
-        <a href="/login">Log in</a>
-        <a href="/signup">Sign up</a>
+        <a href="/login" >Log in</a>
+        <a href="/signup" >Sign up</a>
       <% } %>
     </div>
-
+<div class="container">
     <div>
-        <a href="/new/question">Add a question</a>
+        <a href="/new/question" class="btn btn-primary">Add a question</a>
     </div>
+    <br>
 
-    <div class="container">
+    <div class="row" >
     
         <% questions.forEach(function(item) { %>
-            <h3><a href="/question/<%=item.id%>"> <%= item.question %> </a></h3>
-            <p><%= item.description %></p>
+            <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+            <h3 class="card-title"><a href="/question/<%=item.id%>"> <%= item.question %> </a></h3>
+            <p class="card-text"><%= item.description %></p>
             <p><%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'numeric', day: '2-digit'}).format(new Date(item.updatedAt)) %></p>
 
             
-            <a href="/new/answer">Add Answer</a>
-
-            
-        <% }); %>
+           
+        </div>
     </div>
+</div>
+        <% }); %>
 
         
-   
+      
+    </div>
+</div>
+        
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </body>
 </html>
