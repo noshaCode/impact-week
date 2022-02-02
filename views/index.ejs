@@ -1,4 +1,4 @@
-<%- include('./components/header') %>
+<!-- <%- include('./components/header') %>
 
     <div>
     <% if (user) { %>
@@ -38,6 +38,98 @@
 </div>
         
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+</html>
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questions Impact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
+
+    <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+   
+
+    <div class="custom-container">
+        <div class="circle-container">
+          <div class="circle">
+            <button id="close">
+              <i class="fas fa-times"></i>
+            </button>
+            <button id="open">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+        
+
+
+            <div class="container">
+                <div>
+                    <% if (user) { %>
+                        Welcome, <%= user.name %>
+                      <% } %>
+                    </div>
+                <div>
+                    <a href="/new/question" class="btn btn-primary">Add a question</a>
+                </div>
+                <br>
+            
+                <div class="row" >
+                
+                    <% questions.forEach(function(item) { %>
+                        <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                        <h3 class="card-title"><a href="/question/<%=item.id%>"> <%= item.question %> </a></h3>
+                        <p class="card-text"><%= item.description %></p>
+                        <p><%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'numeric', day: '2-digit'}).format(new Date(item.updatedAt)) %></p>
+            
+                        
+                       
+                    </div>
+                </div>
+            </div>
+                    <% }); %>
+            
+                    
+                  
+                </div>
+            </div>
+    </div>
+
+    <nav>
+        <ul>
+          <li><i class="fas fa-home"></i><a href="/new/question">Add a question</a></li>
+          <% if (user) { %>
+            <li><i class="fas fa-sign-in-alt"></i><a href="/logout">Log out</a></li>
+          <% } else { %>
+            <li><i class="fas fa-sign-in-alt"></i><a href="/login"> Login</a></li>
+            <li><i class="fas fa-user-plus"></i><a href="/signup"> Sign Up</a></li>
+          <% } %>
+        </div>
+        </ul>
+    </nav>
+
+    <script>
+        const open = document.getElementById('open')
+        const close = document.getElementById('close')
+        const container = document.querySelector('.custom-container')
+
+        open.addEventListener('click', () => container.classList.add('show-nav'))
+
+        close.addEventListener('click', () => container.classList.remove('show-nav'))
+    </script>
 
 </body>
 </html>
