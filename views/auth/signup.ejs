@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<%- include('../components/header') %>
     <!-- <h2>SIGN UP</h2> -->
 
+    <div class="container">
     <form method="POST" action="/signup">
         <h2>Sign up</h2>
-        <div>
-            <label for="name">Name</label>
-            <input type="text" name="name" required />
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" name="name"  class="form-control"required />
             <% if (err && err.name){%>
                 <div class="error">
                     <p><%=err.name%></p> 
@@ -21,9 +14,9 @@
             <%}%>
         </div>
       
-        <div>
-            <label for="email">Email</label>
-            <input type="text" name="email" required />
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" name="email"  class="form-control" required />
 
             <% if (err && err.email){%>
                 <div class="error">
@@ -31,25 +24,28 @@
                 </div>
             <%}%>
         </div>
-        <div>
-            <label for="password">Password</label>
-            <input type="password" name="password" required />
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" required />
             <% if (err && err.password){%>
                 <div class="error">
                     <p><%=err.password%></p> 
                 </div>
             <%}%>
         </div>
-        <div>
+        <div class="mb-3">
             <label for="repeatPassword">Repeat Password</label>
-            <input type="password" name="repeatPassword" required />
+            <input type="password" name="repeatPassword" class="form-control" required />
             <% if (err && err.repeatPassword){%>
                 <div class="error">
                     <p><%=err.repeatPassword%></p> 
                 </div>
             <%}%>
         </div>
-        <button>Sign up</button>
+        <button type="submit" class="btn btn-primary">Sign up</button>
       </form>
-</body>
-</html>
+      <div>
+        Existing user? Login <a href="/login">here</a>
+        </div>
+    </div>
+      <%- include('../components/footer') %>
