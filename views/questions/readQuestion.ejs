@@ -1,72 +1,98 @@
 <%- include('../components/header') %>
 
-<div class="container">
+    <div class="container ">
+<div class="ReadQuestion">
    
-        <h1><%= result.question %></h1>
-        <p><%= result.description %></p>
-        <p> Created By: <%=result.user.name %> </p>
+        <h1>
+            <%= result.question %>
+        </h1>
+        <p>
+            <%= result.description %>
+        </p>
+        <p  class="create-date" > Created By: <%=result.user.name %>
+        </p>
 
-        <% if (result.user.id === currentUserId) { %>
-            <a href="/edit/question/<%= result.id %>"class="btn btn-primary">Edit question</a> 
-            <a href="/delete/question/<%= result.id %>"class="btn btn-primary">Delete question</a>
+        <% if (result.user.id===currentUserId) { %>
+            <a  href="/edit/question/<%= result.id %>" class="btn btn-primary  class1 ">Edit question</a>
+            <a href="/delete/question/<%= result.id %>" class="btn btn-primary class1">Delete question</a>
 
-        <% } %> 
-
-        <% if (!answerToEdit) { %> 
-   
-    <form method="POST" action="/new/answer/<%=result.id %>">
-      <div >
-          <label>Answer</label>
-
-          <textarea  rows="20" cols="30" name="answer" placeholder="Answer" required>
-        
-              
-              </textarea>
-              
-      </div>
-  <div>
-      <button type="submit">Add Answer</button>
-  </div>
-  <div>
-  </div>
-  </form>
-       
-  <% } else{ %>  
-
-  <h2>Edit Your Answer</h2>
-  <form method="POST" action="/edit/answer/<%=answerToEdit.id%> ">
-      <div>
-          <textarea rows="20" cols="30" name="answer" required/ >
-               <%=answerToEdit.answer%></textarea>
-      </div>
-
-      <div>
-          <button type="submit">save Answer</button>
-      </div>
-  </form>
-  <% } %> 
-
-
-
-      <div>
-        <% answer.forEach(function(item) { %>
-          <h2>Answers:</h2>
-            <h3><%= item.answer%></h3>
-    
-            <p>Created By: <%=item.user.name %> </p>
-            
-
-        
-            <% if (item.user.id === currentUserId) { %>
-            <a href="/edit/answer/<%= item.id %>">Edit Answer</a> 
-            <a href="/delete/answer/<%= item.id %>">Delete answer</a>
             <% } %>
-
-            <p><%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'numeric', day: '2-digit'}).format(new Date(item.updatedAt)) %></p>
-    
-            <% }); %>
-      </div>
+        </div>
         
-</div>
-   
+                <% if (!answerToEdit) { %>
+
+                    <form method="POST" action="/new/answer/<%=result.id %>">
+                        <div>
+                          
+                            <label>
+                                <h3 class="answer-title ">Add your Answer:</h3>
+                            </label>
+
+                            <textarea class="form-control" rows="6" cols="20" name="answer" placeholder="Answer"
+                                required></textarea>
+
+                        </div>
+
+                        <div class="btnAnswer">
+                            <button class="btn btn-primary " type="submit">Add Answer</button>
+                        </div>
+
+
+
+                    </form>
+
+                    <% } else{ %>
+
+                        <h3> * write Your Answer:</h3>
+                        <form method="POST" action="/edit/answer/<%=answerToEdit.id%> ">
+                            <div>
+                                
+                            <textarea class="form-control" rows="6" cols="20" name="answer" placeholder="Answer"
+                            required> <%=answerToEdit.answer%></textarea>
+                            
+                            </div>
+
+                            <div class="btnAnswer">
+                                <button class="btn btn-primary addanswer" type="submit">save Answer</button>
+                            </div>
+                        </form>
+                        <% } %>
+
+
+                            <h3 class="answer-title">  * There are <%=answer.length%> Answers</h3>
+                            <div class="row">
+                                <% answer.forEach(function(item) { %>
+                                    <div class="col-sm-6 all-card">
+                                        <div class="card">
+                                            <div class="card-body">
+
+                                                <h4 class="card-title">
+                                                    <%= item.answer%>
+                                                </h4>
+
+                                                <div class=" create-date">
+                                                    <p class="card-text">Created By: <%=item.user.name %>
+                                                            <br>
+                                                            <%= new Intl.DateTimeFormat('en-GB', { dateStyle: 'full' ,
+                                                                timeStyle: 'short' }).format(new Date(item.updatedAt))
+                                                                %>
+                                                    </p>
+                                                </div>
+
+                                                <% if (item.user.id===currentUserId) { %>
+                                                    <a href="/edit/answer/<%= item.id %>" class="btn btn-primary class1">Edit  Answer</a>
+                                                    <a href="/delete/answer/<%= item.id %>" class="btn btn-primary class1">Delete answer</a>
+
+                                                    <% } %>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <% }); %>
+                                    
+    
+                            </div>
+
+    </div>
+
     <%- include('../components/footer') %>

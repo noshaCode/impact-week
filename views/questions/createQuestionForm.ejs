@@ -1,35 +1,48 @@
 <%- include('../components/header') %>
-<div class="container">
-    <h1>The Question</h1>
-    <div>
-    
-   </div>
 
-    
 
-    <form method="POST" action="/new/question" class="container">
-     
+
+
+    <div class="container">
+        <img  class= "homepage-img"  src="https://media.nature.com/lw800/magazine-assets/d41586-019-02368-z/d41586-019-02368-z_17033334.jpg"> 
+        <h1>The Question</h1>
         <div>
-            <input type="text" name="question" placeholder="Question" class="form-control" required/>
-            <% if (errorsList && errorsList.question){%>
-                <div class="error">
-                    <p><%=errorsList.question%></p> 
-                </div>
-            <%}%>
         </div>
-    <br>
-        <div>
-            <textarea  rows="20" cols="30" name="description" placeholder="Description" class="form-control" required></textarea>
-            <% if (errorsList && errorsList.description){%>
-                <div class="error">
-                    <p><%=errorsList.description%></p> 
-                </div>
-            <%}%>
-        </div>
-        <br>
-        <div>
-            <button type="submit" class="btn btn-primary"  >Add questions</button>
-        </div>
-    </form>
-</div>
+
+
+
+        <form method="POST" action="/new/question" class="container">
+
+            <div>
+                <input type="text" name="question" placeholder="Question" class="form-control" required />
+                <% if (errorsList && errorsList.question){%>
+                    <div class="error">
+                        <p>
+                            <%=errorsList.question%>
+                        </p>
+                    </div>
+                    <%}%>
+            </div>
+            <br>
+            <div>
+                <textarea rows="10" cols="20" name="description" placeholder="Description" class="form-control"
+                    required></textarea>
+                <% if (errorsList && errorsList.description){%>
+                    <div class="error">
+                        <p>
+                            <%=errorsList.description%>
+                        </p>
+                    </div>
+                    <%}%>
+            </div>
+            <br>
+            <div>
+                <button type="submit" class="btn btn-primary">Add questions</button>
+            </div>
+        </form>
+       
+    </div>
+   
+
+
     <%- include('../components/footer') %>

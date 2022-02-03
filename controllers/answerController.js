@@ -68,8 +68,10 @@ const AnswerWithEdit = (req,res) => {
  .then((result) => {
         // console.log("-------------------------------------------")
        const questionId = result.question.toString()
-     res.redirect(`/question/${questionId}`);
-
+       
+   res.redirect(`/question/${questionId}`);
+   
+    //console.log("-------------------------------------------")
  })
  .catch((err) => {
 console.log(err);
