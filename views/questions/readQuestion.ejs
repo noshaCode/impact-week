@@ -1,23 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= result.question %></title>
-</head>
-<body>
- 
-    <h1><%= result.question %></h1>
-    <p><%= result.description %></p>
-    <p>By: <%=result.user.name %> </p>
+<%- include('../components/header') %>
 
-    <% if (result.user.id === currentUserId) { %>
-        <a href="/edit/question/<%= result.id %>">Edit question</a> 
-        <a href="/delete/question/<%= result.id %>">Delete question</a>
-    <% } %>  
-    <div>
-<h2>Answers:</h2>
+<div class="container">
+   
+        <h1><%= result.question %></h1>
+        <p><%= result.description %></p>
+        <p>By: <%=result.user.name %> </p>
+
+        <% if (result.user.id === currentUserId) { %>
+            <a href="/edit/question/<%= result.id %>"class="btn btn-primary">Edit question</a> 
+            <a href="/delete/question/<%= result.id %>"class="btn btn-primary">Delete question</a>
+
+        <% } %> 
+        
+      <div>
+          <h2>Answers:</h2>
         <% answer.forEach(function(item) { %>
             
             <h3><%= item.answer%></h3>
@@ -31,12 +27,10 @@
             <% } %>
 
             <p><%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'numeric', day: '2-digit'}).format(new Date(item.updatedAt)) %></p>
-    </div> 
-    <% }); %>
-    <div>
-          
+    
+        <% }); %>
+      </div>
+        
+</div>
    
-    </div>
-</body>
-</html>
-
+    <%- include('../components/footer') %>

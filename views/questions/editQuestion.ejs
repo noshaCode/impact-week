@@ -1,29 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<%- include('../components/header') %>
 
-    <form method="POST" action="/edit/question/<%=result.id%> ">
-      
-        <div>
-            <input type="text" name="question" value="<%=result.question%>" required/>
-        </div>
-     
-        <div>
-            <textarea rows="20" cols="30" name="description" required><%=result.description%></textarea>
+        <div class="container">
+
+            <form method="POST" action="/edit/question/<%=result.id%> ">
+
+                <div>
+                    <input type="text" name="question" value="<%=result.question%>" class="form-control" required />
+                </div>
+                <br>
+                <div>
+                    <textarea rows="20" cols="30" name="description" class="form-control"
+                        required><%=result.description%></textarea>
+                </div>
+                <br>
+                <div>
+                    <button type="submit" class="btn btn-primary">save question </button>
+                </div>
+            </form>
+            <br>
         </div>
 
-        <div>
-            <button type="submit">save question </button>
-        </div>
-    </form>
-    <a href="/edit/question/<%= result.id %>">Edit Article</a> 
-    <a href="/delete/question/<%= result.id %>">Delete Article</a> 
-    
-</body>
-</html>
+            <%- include('../components/footer') %>

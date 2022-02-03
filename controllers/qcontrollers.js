@@ -1,7 +1,9 @@
-const res = require("express/lib/response");
+
 const Question = require("../models/question")
 const Answer = require("../models/answer")
 const { handleQuestionsError } = require("./errorHandling")
+
+
 
 
 
@@ -13,7 +15,7 @@ const allQuestions = async (req, res) => {
     const question = await Question.find().populate('user');
 
     //res.render("questions/readQuestion", { result: question, answer: answer, currentUserId });
-  res.render("index", { questions: question});
+  res.render("index", { questions: question, pageTitle: "Home"});
    
 }
 
@@ -24,17 +26,18 @@ const readQuestion = async (req, res) => {
 
     const currentUserId = user ? user.id : "";
 
+
     const question = await Question.findById(id).populate('user');
     const answer = await Answer.find({ question }).populate('user');
-
-
-    res.render("questions/readQuestion", { result: question, answer: answer, currentUserId });
- 
-    
+    if (question) {
+      res.render("questions/readQuestion", { result: question, answer: answer, currentUserId ,pageTitle:question.question});
+   } else {
+       res.redirect("/")
+   }
 }
 
 const showFormQuestion = (req, res) => {
-    res.render('questions/createQuestionForm', { errorsList: '' })
+    res.render('questions/createQuestionForm', { pageTitle:"Add Questions",errorsList: '' })
 }
 
 
@@ -52,7 +55,7 @@ const createQuestion = async (req, res) => {
     } catch (error) {
         console.error(error)
         const errorsList = handleQuestionsError(error)
-        res.render("questions/createQuestionForm", { errorsList })
+        res.render("questions/createQuestionForm", { pageTitle:"Add Questions",errorsList })
     }
 
 
@@ -62,10 +65,11 @@ const updateQuestion = async (req, res) => {
     const id = req.params.id
     try {
         const result = await Question.findById(id)
-        res.render("questions/editQuestion", { result })
+
+        res.render("questions/editQuestion", {result, pageTitle: "Edit Questions"})
 
     } catch (err) {
-        res.render("questions/editQuestion", { err: err })
+        res.render("questions/editQuestion", { pageTitle:"Edit Question",err: err })
 
     }
 
@@ -75,13 +79,14 @@ const questionWithEdit = (req, res) => {
     const id = req.params.id
     const body = req.body
 
-    Question.findByIdAndUpdate(id, body)
-        .then((result) => {
-            res.redirect(`/question/${id}`);
-        })
-        .catch((err) => {
-            res.render("questions/editQuestion", { err: err })
-        })
+   Question.findByIdAndUpdate(id, body)
+   .then((result)=>{
+        res.redirect(`/question/${id}`);
+   })
+   .catch((err)=>{
+       res.render("questions/editQuestion",{err : err, pageTitle:"Edit Question" })
+   })
+
 
 
 }

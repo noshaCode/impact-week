@@ -1,41 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-</head>
-<body>
+<%- include('../components/header') %>
+<div class="container">
     <h1>The Question</h1>
     <div>
-     <a href="/">Back</a>
+    
    </div>
 
     
 
-    <form method="POST" action="/new/question">
+    <form method="POST" action="/new/question" class="container">
      
         <div>
-            <input type="text" name="question" placeholder="Question" required/>
+            <input type="text" name="question" placeholder="Question" class="form-control" required/>
             <% if (errorsList && errorsList.question){%>
                 <div class="error">
                     <p><%=errorsList.question%></p> 
                 </div>
             <%}%>
         </div>
-    
+    <br>
         <div>
-            <textarea  rows="20" cols="30" name="description" placeholder="Description" required></textarea>
+            <textarea  rows="20" cols="30" name="description" placeholder="Description" class="form-control" required></textarea>
             <% if (errorsList && errorsList.description){%>
                 <div class="error">
                     <p><%=errorsList.description%></p> 
                 </div>
             <%}%>
         </div>
+        <br>
         <div>
-            <button type="submit">Add questions</button>
+            <button type="submit" class="btn btn-primary"  >Add questions</button>
         </div>
     </form>
-</body>
-</html>
+</div>
+    <%- include('../components/footer') %>

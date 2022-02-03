@@ -1,43 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questions Impact</title>
+<%- include('./components/header') %>
 
-</head>
-<body>
-
-    <div>
-    <% if (user) { %>
-        Welcome, <%= user.name %>
-        <a href="/logout">Log out</a>
-      <% } else { %>
-        <a href="/login">Log in</a>
-        <a href="/signup">Sign up</a>
-      <% } %>
-    </div>
-
-    <div>
-        <a href="/new/question">Add a question</a>
-    </div>
-
-    <div class="container">
-    
-        <% questions.forEach(function(item) { %>
-            <h3><a href="/question/<%=item.id%>"> <%= item.question %> </a></h3>
-            <p><%= item.description %></p>
-            <p><%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'numeric', day: '2-digit'}).format(new Date(item.updatedAt)) %></p>
+            <div class="container">
+                <div>
+                    <% if (user) { %>
+                        Welcome, <%= user.name %>
+                      <% } %>
+                    </div>
+                <div>
+                    <a href="/new/question" class="btn btn-primary">Add a question</a>
+                </div>
+                <br>
             
-            <a href="/new/answer/<%=item.id%>">Add Answer</a>
+                <div class="row" >
+                
+                    <% questions.forEach(function(item) { %>
+                        <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                        <h3 class="card-title"><a href="/question/<%=item.id%>"> <%= item.question %> </a></h3>
+                        <p class="card-text"><%= item.description %></p>
+                        <p><%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'numeric', day: '2-digit'}).format(new Date(item.updatedAt)) %></p>
+            
+                        <a href="/new/answer/<%=item.id%>">Add Answer</a>
+                       
+                    </div>
+                </div>
+            </div>
+                    <% }); %>
+            
+                    
+                  
+                </div>
+            </div>
 
-        
-        <% }); %>
-    </div>
-
-        
-   
-
-</body>
-</html>
+<%- include('./components/footer') %>
