@@ -26,7 +26,7 @@ router.get('/delete/question/:id', access, deleteQuestion)
 const Answer = require("./controllers/answerController")
 
 
-router.all("/new/answer/:id",access,Answer.AnswerForm)
+router.post("/new/answer/:id",access,Answer.AnswerForm)
 
 
 router.get("/edit/answer/:id",access,Answer.UpdateAnswer)
