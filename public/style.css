@@ -84,3 +84,20 @@ a.class1:hover {
     border-radius: 50%;
     float: right;
 }
+.img-div-qadd{
+display: flex;
+justify-content: center;
+margin-bottom: 5px;
+}
+
+.qadd-img{
+    width:200; 
+    height: 250px;
+    border-radius: 50%;
+  
+}
+
+
+.error {
+    color: red;
+}

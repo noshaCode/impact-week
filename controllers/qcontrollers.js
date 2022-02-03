@@ -26,7 +26,7 @@ const readQuestion = async (req, res) => {
 
     const currentUserId = user ? user.id : "";
 
-
+try{
     const question = await Question.findById(id).populate('user');
     const answer = await Answer.find({ question }).populate('user').sort({createdAt:-1});
     //console.log(answer);
@@ -34,8 +34,12 @@ const readQuestion = async (req, res) => {
       res.render("questions/readQuestion", { result: question, answerToEdit:'',answer: answer, currentUserId ,pageTitle:question.question});
    } else {
        res.redirect("/")
-   }
+    }
+}catch(e){
+    res.redirect("/")
 }
+}
+
 
 const showFormQuestion = (req, res) => {
     res.render('questions/createQuestionForm', { pageTitle:"Add Questions",errorsList: '' })

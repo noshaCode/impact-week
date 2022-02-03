@@ -1,38 +1,42 @@
-
 <%- include('../components/header') %>
-<div>
-    <img class="login-pic" src="https://fow-hub.com/wp-content/uploads/2021/03/5d782b2c3f637b0652c2917f_shutterstock_1223065843.jpg" width="800" height="370">
-    </div>
+    <div class="container">
 
-<div class="container">
-    <form method="POST" action="/login">
         <div>
-            <h2>Log in</h2>
+            <img class="login-pic"
+                src="https://fow-hub.com/wp-content/uploads/2021/03/5d782b2c3f637b0652c2917f_shutterstock_1223065843.jpg"
+                width="800" height="370">
         </div>
-        <div class="mb-3">
-            <label for="email1" class="form-label">Email address</label>
-            <input name="email" type="email" class="form-control" id="email1">
-            
-        </div>
-        <div class="mb-3">
-            <label for="password1" class="form-label">Password</label>
-            <input name="password" type="password"  class="form-control" id="password1">
-            
-        </div>
-        
-        
-          <% if(err) { %>
-                <p style="color: red;"><%= err %></p>
-            <% } %>
-        <button type="submit" class="btn btn-primary" >Log in</button>
 
-      
-    </form>
 
-    <div>
-        New user? Create an account <a href="/signup" class="class1">here</a>
+        <form method="POST" action="/login">
+            <div>
+                <h2>Log in</h2>
+            </div>
+            <div class="mb-3">
+                <label for="email1" class="form-label">Email address</label>
+                <input name="email" type="email" class="form-control" id="email1">
+
+            </div>
+            <div class="mb-3">
+                <label for="password1" class="form-label">Password</label>
+                <input name="password" type="password" class="form-control" id="password1">
+
+            </div>
+
+
+            <% if(err) { %>
+                <p style="color: red;">
+                    <%= err %>
+                </p>
+                <% } %>
+                    <button type="submit" class="btn btn-primary">Log in</button>
+
+
+        </form>
+
+        <div>
+            New user? Create an account <a href="/signup" class="class1">here</a>
+        </div>
+
     </div>
     <%- include('../components/footer') %>
-</div>
-
-
