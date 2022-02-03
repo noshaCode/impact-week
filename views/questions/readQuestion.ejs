@@ -4,22 +4,58 @@
    
         <h1><%= result.question %></h1>
         <p><%= result.description %></p>
-        <p>By: <%=result.user.name %> </p>
+        <p> Created By: <%=result.user.name %> </p>
 
         <% if (result.user.id === currentUserId) { %>
             <a href="/edit/question/<%= result.id %>"class="btn btn-primary">Edit question</a> 
             <a href="/delete/question/<%= result.id %>"class="btn btn-primary">Delete question</a>
 
         <% } %> 
+
+        <% if (!answerToEdit) { %> 
+   
+    <form method="POST" action="/new/answer/<%=result.id %>">
+      <div >
+          <label>Answer</label>
+
+          <textarea  rows="20" cols="30" name="answer" placeholder="Answer" required>
         
+              
+              </textarea>
+              
+      </div>
+  <div>
+      <button type="submit">Add Answer</button>
+  </div>
+  <div>
+  </div>
+  </form>
+       
+  <% } else{ %>  
+
+  <h2>Edit Your Answer</h2>
+  <form method="POST" action="/edit/answer/<%=answerToEdit.id%> ">
       <div>
-          <h2>Answers:</h2>
+          <textarea rows="20" cols="30" name="answer" required/ >
+               <%=answerToEdit.answer%></textarea>
+      </div>
+
+      <div>
+          <button type="submit">save Answer</button>
+      </div>
+  </form>
+  <% } %> 
+
+
+
+      <div>
         <% answer.forEach(function(item) { %>
-            
+          <h2>Answers:</h2>
             <h3><%= item.answer%></h3>
     
             <p>Created By: <%=item.user.name %> </p>
-           
+            
+
         
             <% if (item.user.id === currentUserId) { %>
             <a href="/edit/answer/<%= item.id %>">Edit Answer</a> 
@@ -28,7 +64,7 @@
 
             <p><%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'numeric', day: '2-digit'}).format(new Date(item.updatedAt)) %></p>
     
-        <% }); %>
+            <% }); %>
       </div>
         
 </div>

@@ -28,9 +28,10 @@ const readQuestion = async (req, res) => {
 
 
     const question = await Question.findById(id).populate('user');
-    const answer = await Answer.find({ question }).populate('user');
+    const answer = await Answer.find({ question }).populate('user').sort({createdAt:-1});
+    //console.log(answer);
     if (question) {
-      res.render("questions/readQuestion", { result: question, answer: answer, currentUserId ,pageTitle:question.question});
+      res.render("questions/readQuestion", { result: question, answerToEdit:'',answer: answer, currentUserId ,pageTitle:question.question});
    } else {
        res.redirect("/")
    }
