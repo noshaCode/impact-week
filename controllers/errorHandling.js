@@ -20,6 +20,9 @@ const handleSignupError = (allErrors) => {
   return errorsList
 }
 
+
+////////Question part 
+
 const handleQuestionsError = (allErrors)=>{
   let errorsList = { question: '', description: '' };
 
@@ -31,4 +34,19 @@ const handleQuestionsError = (allErrors)=>{
   return errorsList
 }
 
-module.exports = {handleSignupError,handleQuestionsError}
+
+/////////Answer part
+const handleAnswersError = (allAnswerError)=>{
+  let errorsList2 = { answer: ''};
+
+  
+  if (allAnswerError.message.includes('Answer validation failed')) {
+    Object.values(allErrors.errors).forEach(({ properties }) => {
+        errorsList2[properties.path] = properties.message;
+    });
+  }
+  return errorsList2
+}
+
+module.exports = {handleSignupError,handleQuestionsError,
+  handleAnswersError}

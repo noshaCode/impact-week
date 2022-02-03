@@ -26,17 +26,13 @@ router.get('/delete/question/:id', access, deleteQuestion)
 const Answer = require("./controllers/answerController")
 
 
-// router.get("/", checkUser,Answer.AllAnswer)
+router.all("/new/answer/:id",access,Answer.AnswerForm)
 
-router.get("/answer/:id",Answer.ReadAnswer)
 
-router.get("/new/answer",Answer.ShowAnswerForm)
-router.post("/new/answer",Answer.CreatAnswer)
+router.get("/edit/answer/:id",access,Answer.UpdateAnswer)
+router.post("/edit/answer/:id",access,Answer.AnswerWithEdit)
 
-router.get("/edit/answer/:id",Answer.UpdateAnswer)
-router.post("/edit/answer/:id",Answer.AnswerWithEdit)
-
-router.get('/delete/answer/:id', Answer.DeleteQuestion)
+router.get('/delete/answer/:id',access, Answer.DeleteAnswer)
 
 
 

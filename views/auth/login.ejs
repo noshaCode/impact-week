@@ -17,7 +17,12 @@
             
         </div>
         
+        
+          <% if(err) { %>
+                <p style="color: red;"><%= err %></p>
+            <% } %>
         <button type="submit" class="btn btn-primary" >Log in</button>
+
       
     </form>
 

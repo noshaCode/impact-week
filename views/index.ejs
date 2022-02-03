@@ -21,7 +21,7 @@
                         <p class="card-text"><%= item.description %></p>
                         <p><%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'numeric', day: '2-digit'}).format(new Date(item.updatedAt)) %></p>
             
-                        
+                        <a href="/new/answer/<%=item.id%>">Add Answer</a>
                        
                     </div>
                 </div>
@@ -32,6 +32,5 @@
                   
                 </div>
             </div>
-    
 
-    <%- include('./components/footer') %>
+<%- include('./components/footer') %>

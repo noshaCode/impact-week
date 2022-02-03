@@ -1,43 +1,39 @@
 
-const Question = require("../models/question");
-const {handleQuestionsError}=require("./errorHandling")
+const Question = require("../models/question")
+const Answer = require("../models/answer")
+const { handleQuestionsError } = require("./errorHandling")
 
 
-const allQuestions = (req, res) => {
-    Question.find()
-        .then((questions) => {
-            res.render("index", { questions: questions, pageTitle: "Home" });
-        })
-        .catch((err) => {
-            console.log(err);
-        })
 
+
+
+
+const allQuestions = async (req, res) => {
+    const id = req.params.id;
+    const user = res.locals.user; //read
+
+    const question = await Question.find().populate('user');
+
+    //res.render("questions/readQuestion", { result: question, answer: answer, currentUserId });
+  res.render("index", { questions: question, pageTitle: "Home"});
+   
 }
 
-const readQuestion = (req, res) => {
+
+const readQuestion = async (req, res) => {
     const id = req.params.id;
-    const user = res.locals.user //read
+    const user = res.locals.user; //read
 
     const currentUserId = user ? user.id : "";
 
-    Question.findById(id).populate('user')
-        .then((result) => {
-            if (result) {
 
-
-            
-
-
-                res.render("questions/readQuestion",{pageTitle:result.question, result,currentUserId });
-            } else {
-                res.redirect("/")
-            }
-
-        })
-        .catch((err) => {
-            console.log(err);
-
-        })
+    const question = await Question.findById(id).populate('user');
+    const answer = await Answer.find({ question }).populate('user');
+    if (question) {
+      res.render("questions/readQuestion", { result: question, answer: answer, currentUserId ,pageTitle:question.question});
+   } else {
+       res.redirect("/")
+   }
 }
 
 const showFormQuestion = (req, res) => {
@@ -51,9 +47,9 @@ const createQuestion = async (req, res) => {
 
     try {
         await Question.create({
-            question:body.question,
+            question: body.question,
             description: body.description,
-            user: user.id 
+            user: user.id
         })
         res.redirect("/")
     } catch (error) {
@@ -69,6 +65,7 @@ const updateQuestion = async (req, res) => {
     const id = req.params.id
     try {
         const result = await Question.findById(id)
+
         res.render("questions/editQuestion", {result, pageTitle: "Edit Questions"})
 
     } catch (err) {
@@ -78,9 +75,9 @@ const updateQuestion = async (req, res) => {
 
 }
 
-const questionWithEdit = (req,res) => {
-   const id = req.params.id
-   const body = req.body
+const questionWithEdit = (req, res) => {
+    const id = req.params.id
+    const body = req.body
 
    Question.findByIdAndUpdate(id, body)
    .then((result)=>{
@@ -91,18 +88,19 @@ const questionWithEdit = (req,res) => {
    })
 
 
+
 }
 
-const deleteQuestion = (req,res)=> {
+const deleteQuestion = (req, res) => {
     const id = req.params.id
-   
+
     Question.findByIdAndDelete(id)
-    .then((result)=>{
-        res.redirect("/");
-    })
-    .catch((err)=>{
-        res.redirect(`/question/${id}`);
-    })
+        .then((result) => {
+            res.redirect("/");
+        })
+        .catch((err) => {
+            res.redirect(`/question/${id}`);
+        })
 }
 
 // const deleteQuestionValidate = (req,res)=> {
@@ -124,4 +122,7 @@ const deleteQuestion = (req,res)=> {
 
 
 
-module.exports = { allQuestions, readQuestion, createQuestion, showFormQuestion, updateQuestion, questionWithEdit,deleteQuestion }
+
+
+
+module.exports = { allQuestions, readQuestion, createQuestion, showFormQuestion, updateQuestion, questionWithEdit, deleteQuestion }
