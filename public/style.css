@@ -26,3 +26,61 @@ body{
     min-height: calc(100vh - 110px);
 
 }
+.create-date{
+    text-align: right;
+    margin-right: 1rem;
+}
+
+.CopyRight{
+    margin-top: 2rem;
+    text-align: center;
+   
+}
+.btnAnswer{
+    margin-top:7px;
+    margin-bottom: 7px;
+    text-align: right;
+    margin-right: 1rem;
+}
+.all-card{
+    margin-top: 2rem;
+}
+.ReadQuestion{
+    margin-top: 2rem;
+    text-align: center;
+    border: #ff7979 solid;
+    border-radius: 23px;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    
+}
+
+a{
+    color: #ff7979;
+}
+    
+
+a.class1:hover {
+    font-size:130%;
+    color: #ff7979;
+}
+
+.login-pic{
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -5rem;
+}
+.A-pic{
+    border-radius: 50%;
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+.homepage-img{
+    width:200;
+    height: 250px;
+    border-radius: 50%;
+    float: right;
+}
